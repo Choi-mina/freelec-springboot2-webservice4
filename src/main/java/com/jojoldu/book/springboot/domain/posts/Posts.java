@@ -6,12 +6,17 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 어노테이션 순서
+ * @Getter, @NoArgsConstructor : 롬복 어노테이션
+ * 주요 어노테이션인 @Entity를 클래스에 가깝게 두고 롬복 어노테이션을 그 위에 둠
+ * */
 @Getter
 @NoArgsConstructor
 @Entity
 public class Posts extends BaseTimeEntity{
 
-    @Id
+    @Id // 해당 테이블의 PK 필드
     @GeneratedValue(strategy = GenerationType.IDENTITY) // PK의 생성규칙
     private Long id;
 
@@ -23,7 +28,7 @@ public class Posts extends BaseTimeEntity{
 
     private String author;
 
-    @Builder
+    @Builder    // 해당 클래스의 빌더 패턴 클래스를 생성
     public Posts(String title, String content, String author) {
         this.title = title;
         this.content = content;
